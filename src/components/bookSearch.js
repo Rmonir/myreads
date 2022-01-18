@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function BookSearch() {
+export default function BookSearch(props) {
+    const {books} = props
     return (
         <div className="search-books">
             <div className="search-books-bar">

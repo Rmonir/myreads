@@ -18,9 +18,15 @@ export const get = (bookId) =>
     .then(data => data.book)
 
 export const getAll = () =>
+
   fetch(`${api}/books`, { headers })
     .then(res => res.json())
-    .then(data => data.books)
+    .then(data => {
+      console.log(data.books)
+
+      return data.books
+
+    })
 
 export const update = (book, shelf) =>
   fetch(`${api}/books/${book.id}`, {
