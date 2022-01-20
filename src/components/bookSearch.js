@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import * as BooksApi from '../booksAPI'
 import { SearchKeyWords } from "../data/searchKeywords";
 import BookCard from "./bookCard";
-
-
 export default function BookSearch(props) {
     const { books } = props
     const [searchTerm, setSearchTerm] = useState("")
@@ -15,7 +13,7 @@ export default function BookSearch(props) {
             let keyWards = SearchKeyWords.filter(key => key.toLowerCase().includes(searchTerm.toLowerCase()));
             if (keyWards.length > 0) {
                 BooksApi.search(searchTerm.toLowerCase()).then((searchResultData) => {
-                    setsearchResult(searchResultData)
+                    setsearchResult((searchResultData && searchResultData.length) ? searchResultData : [])
                     console.log(searchResultData)
                 })
             } else {
@@ -42,7 +40,6 @@ export default function BookSearch(props) {
                 </Link>
                 <div className="search-books-input-wrapper">
                     <input type="text" name="searchTem" value={searchTerm} onChange={searchTermOnChange} placeholder="Search by title or author" />
-
                 </div>
             </div>
             <div className="search-books-results">
