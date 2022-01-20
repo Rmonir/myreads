@@ -21,10 +21,11 @@ export default function BookList(props) {
             <div className="open-search">
                 <Link
                     to='/search'
+                    title="Add a book"
+                    className="search-link"
                 >
-                 <button> Add a book</button>  
+                    <button className="search-link" > Add a book</button>
                 </Link>
-                {/* <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button> */}
             </div>
         </div>
     )

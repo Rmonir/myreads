@@ -1,6 +1,6 @@
 import React from "react";
 import BookCard from "./bookCard";
-import { BookShelvesLkp } from "../bookShelveslkp";
+import { BookShelvesLkp } from "../data/bookShelveslkp";
 export default function BookShelf(props) {
     const { shelf, booksList } = props
     return (

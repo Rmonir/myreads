@@ -1,5 +1,5 @@
 import React from "react";
-import { BookShelvesLkp } from "../bookShelveslkp";
+import { BookShelvesLkp } from "../data/bookShelveslkp";
 
 export const BookShelfChanger = (props) => {
 
@@ -9,10 +9,7 @@ export const BookShelfChanger = (props) => {
                 <option value="move" disabled>Move to...</option>
                 {
                     Object.keys(BookShelvesLkp).map(key => (
-                        key !== 'none' ?
-                            <option key={key} value={key}>{BookShelvesLkp[key]}</option>
-                            :
-                            <option key={key} value="none">None</option>
+                        <option key={key} value={key}>{BookShelvesLkp[key]}</option>
                     ))
                 }
             </select>

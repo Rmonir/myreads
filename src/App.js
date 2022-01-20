@@ -22,11 +22,10 @@ class BooksApp extends React.Component {
       let bookShelves = shelves.map(shelf => {
         return [shelf, books.filter(c => c.shelf === shelf)]
       })
-      console.log(bookShelves)
+      //console.log(bookShelves)
       this.setState({
         books,
         bookShelves
-
       })
     })
   }
