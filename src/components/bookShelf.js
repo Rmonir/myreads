@@ -9,6 +9,9 @@ export default function BookShelf(props) {
             <div className="bookshelf-books">
                 <ol className="books-grid">
                     {
+                        /*
+                            for each shelf we have to draw books list as BookCard
+                        */
                         booksList.map(book => (
                             <li key={book.id}>
                                 <BookCard book={book} onShelfChangeHndler={onShelfChangeHndler} />

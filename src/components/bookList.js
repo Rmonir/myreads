@@ -11,6 +11,11 @@ export default function BookList(props) {
             </div>
             <div className="list-books-content">
                 {
+                    /* loop for each shelf to set BookShlf properties 
+                       shelf => book shelf title
+                       booksList => the books in this shelf
+                       onShelfChangeHndler => to rais the event for changing any shelf to parent app
+                    */
                     bookShelves.map(shelf => (
                         <div key={shelf[0]}>
                             <BookShelf shelf={shelf[0]} booksList={shelf[1]} onShelfChangeHndler={onShelfChangeHndler}/>

@@ -5,7 +5,9 @@ import * as BooksApi from '../booksAPI'
 export default function BookCard(props) {
     let { book, onShelfChangeHndler } = props
 
+    // this handling just for search page to refresh book card data => when changing shelf
     function refreshBookData() {
+        // calling get api to return book object data 
         BooksApi.get(book.id).then((bookData) => {
             book = bookData
         })
