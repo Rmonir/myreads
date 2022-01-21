@@ -13,7 +13,8 @@ export const BookShelfChanger = (props) => {
                 setShelf(book.shelf)
             })
         }
-    }, [book,shelf])
+        setShelf(book.shelf)
+    }, [book])
 
     function onShelfChange(e) {
         let selectedShelf = e.target.value;

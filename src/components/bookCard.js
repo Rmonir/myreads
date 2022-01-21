@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BookShelfChanger } from "./bookShlefChanger";
 import * as BooksApi from '../booksAPI'
 
 export default function BookCard(props) {
     let { book, onShelfChangeHndler } = props
+
     function refreshBookData() {
         BooksApi.get(book.id).then((bookData) => {
             book = bookData

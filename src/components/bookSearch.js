@@ -13,7 +13,7 @@ export default function BookSearch(props) {
             let keyWards = SearchKeyWords.filter(key => key.toLowerCase().includes(searchKeyword.trim().toLowerCase()));
             if (keyWards.length > 0) {
                 BooksApi.search(searchKeyword.trim().toLowerCase()).then((searchResultData) => {
-                    setsearchResult((searchResultData && searchResultData.length) ? searchResultData : [])
+                    setsearchResult((searchResultData && searchResultData.length > 0) ? searchResultData : [])
                 })
             } else {
                 setsearchResult([])
