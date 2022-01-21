@@ -1,16 +1,22 @@
 import React from "react";
 import { BookShelfChanger } from "./bookShlefChanger";
+import * as BooksApi from '../booksAPI'
 
 export default function BookCard(props) {
-    const { book } = props
+    let { book, onShelfChangeHndler } = props
+    function refreshBookData() {
+        BooksApi.get(book.id).then((bookData) => {
+            book = bookData
+        })
+    }
     return (
         <div className="book">
             <div className="book-top">
                 <div className="book-cover" style={{
                     width: 128, height: 193, backgroundImage: `url("${(book.imageLinks && book.imageLinks.thumbnail) && (
-                            book.imageLinks.thumbnail)}")`
+                        book.imageLinks.thumbnail)}")`
                 }}></div>
-                <BookShelfChanger />
+                <BookShelfChanger book={book} onShelfChangeHndler={onShelfChangeHndler == null ? refreshBookData : onShelfChangeHndler} />
             </div>
             <div className="book-title">{book.title}</div>
             {book.authors && (
@@ -20,7 +26,6 @@ export default function BookCard(props) {
                             author
                         }
                     </div>
-
                 ))
             )}
         </div>

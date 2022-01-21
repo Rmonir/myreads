@@ -23,9 +23,7 @@ export const getAll = () =>
     .then(res => res.json())
     .then(data => {
     //  console.log(data.books)
-
       return data.books
-
     })
 
 export const update = (book, shelf) =>

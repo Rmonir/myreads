@@ -4,17 +4,16 @@ import * as BooksApi from '../booksAPI'
 import { SearchKeyWords } from "../data/searchKeywords";
 import BookCard from "./bookCard";
 export default function BookSearch(props) {
-    const { books } = props
     const [searchTerm, setSearchTerm] = useState("")
     const [searchResult, setsearchResult] = useState([])
 
     useEffect(() => {
         if (searchTerm.length > 2) {
-            let keyWards = SearchKeyWords.filter(key => key.toLowerCase().includes(searchTerm.toLowerCase()));
+            let searchKeyword = searchTerm;
+            let keyWards = SearchKeyWords.filter(key => key.toLowerCase().includes(searchKeyword.trim().toLowerCase()));
             if (keyWards.length > 0) {
-                BooksApi.search(searchTerm.toLowerCase()).then((searchResultData) => {
+                BooksApi.search(searchKeyword.trim().toLowerCase()).then((searchResultData) => {
                     setsearchResult((searchResultData && searchResultData.length) ? searchResultData : [])
-                    console.log(searchResultData)
                 })
             } else {
                 setsearchResult([])
@@ -24,18 +23,14 @@ export default function BookSearch(props) {
 
     function searchTermOnChange(e) {
         let query = e.target.value;
-        query = (query !== '' && query.length > 0) ? query.trim() : query
         setSearchTerm(query)
     }
+
 
     return (
         <div className="search-books">
             <div className="search-books-bar">
-                <Link
-                    to='/'
-                    title="close"
-                    className="close-search"
-                >
+                <Link to='/' title="close" className="close-search"  >
                     <button className="close-search" >Close</button>
                 </Link>
                 <div className="search-books-input-wrapper">
@@ -47,9 +42,7 @@ export default function BookSearch(props) {
                     {
                         searchResult.map((book) => (
                             <li key={book.id}>
-                                <BookCard
-                                    book={book}
-                                />
+                                <BookCard book={book} />
                             </li>
                         ))
                     }
