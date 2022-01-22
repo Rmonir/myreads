@@ -23,7 +23,7 @@ class BooksApp extends React.Component {
   getBookShelves() {
     BooksApi.getAll().then((books) => {
       // get distinct shelves array 
-      let shelves = [... new Set(books.map(c => c.shelf))]
+      let shelves = [...new Set(books.map(c => c.shelf))]
       // loop for each shelf and put related books in an array for it
       let bookShelves = shelves.map(shelf => {
         return [shelf, books.filter(c => c.shelf === shelf)]
