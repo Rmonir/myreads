@@ -33,6 +33,8 @@ export default function BookSearch(props) {
                 // clear data if there are any data returned 
                 setsearchResult([])
             }
+        } else {
+            setsearchResult([])
         }
     }, [searchTerm])
 
