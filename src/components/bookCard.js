@@ -1,8 +1,8 @@
 import React from "react";
-import { BookShelfChanger } from "./bookShlefChanger";
-import * as BooksApi from '../booksAPI'
+import BookShelfChanger from "./bookShlefChanger";
+import PropTypes from 'prop-types'
 
-export default function BookCard(props) {
+function BookCard(props) {
     let { book, onShelfChangeHndler } = props
 
     return (
@@ -27,3 +27,10 @@ export default function BookCard(props) {
         </div>
     )
 }
+
+BookCard.propTypes = {
+    book: PropTypes.object.isRequired,
+    onShelfChangeHndler: PropTypes.func.isRequired
+}
+
+export default BookCard

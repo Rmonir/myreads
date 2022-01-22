@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import * as BooksApi from '../booksAPI'
 import { SearchKeyWords } from "../data/searchKeywords";
 import BookCard from "./bookCard";
-export default function BookSearch(props) {
+import PropTypes from 'prop-types'
+
+function BookSearch(props) {
     const { shelvedBooks, onShelfChangeHndler } = props;
     const [searchTerm, setSearchTerm] = useState("")
     const [searchResult, setsearchResult] = useState([])
@@ -68,4 +70,11 @@ export default function BookSearch(props) {
         </div>
     )
 }
+
+BookSearch.propTypes = {
+    shelvedBooks: PropTypes.array.isRequired,
+    onShelfChangeHndler: PropTypes.func.isRequired
+}
+
+export default BookSearch
 

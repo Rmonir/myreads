@@ -1,8 +1,9 @@
 import React from "react";
 import BookCard from "./bookCard";
 import { BookShelvesLkp } from "../data/bookShelveslkp";
-export default function BookShelf(props) {
-    const { shelf, booksList ,onShelfChangeHndler} = props
+import PropTypes from 'prop-types'
+function BookShelf(props) {
+    const { shelf, booksList, onShelfChangeHndler } = props
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">{BookShelvesLkp[shelf]}</h2>
@@ -23,3 +24,10 @@ export default function BookShelf(props) {
         </div>
     )
 }
+
+BookShelf.propTypes = {
+    shelf: PropTypes.string.isRequired,
+    booksList: PropTypes.array.isRequired,
+    onShelfChangeHndler: PropTypes.func.isRequired
+}
+export default BookShelf

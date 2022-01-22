@@ -1,8 +1,9 @@
 import React from "react";
 import BookShelf from "./bookShelf";
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-export default function BookList(props) {
+ function BookList(props) {
     const { bookShelves, onShelfChangeHndler } = props
     return (
         <div className="list-books">
@@ -18,7 +19,7 @@ export default function BookList(props) {
                     */
                     bookShelves.map(shelf => (
                         <div key={shelf[0]}>
-                            <BookShelf shelf={shelf[0]} booksList={shelf[1]} onShelfChangeHndler={onShelfChangeHndler}/>
+                            <BookShelf shelf={shelf[0]} booksList={shelf[1]} onShelfChangeHndler={onShelfChangeHndler} />
                         </div>
                     ))
                 }
@@ -31,3 +32,10 @@ export default function BookList(props) {
         </div>
     )
 }
+
+BookList.propTypes  = {
+    bookShelves: PropTypes.array.isRequired,
+    onShelfChangeHndler: PropTypes.func.isRequired
+}
+
+export default BookList
