@@ -4,7 +4,7 @@ import * as BooksApi from '../booksAPI'
 import { SearchKeyWords } from "../data/searchKeywords";
 import BookCard from "./bookCard";
 export default function BookSearch(props) {
-    const { onGoBack } = props;
+    const { shelvedBooks, onShelfChangeHndler } = props;
     const [searchTerm, setSearchTerm] = useState("")
     const [searchResult, setsearchResult] = useState([])
 
@@ -19,6 +19,13 @@ export default function BookSearch(props) {
             if (keyWards.length > 0) {
                 // calling search api 
                 BooksApi.search(searchKeyword.trim().toLowerCase()).then((searchResultData) => {
+                    if (searchResultData && searchResultData.length > 0) {
+                        searchResultData.map(book => {
+                            let shelfedBook = shelvedBooks.filter(b => b.id == book.id);
+                            book.shelf = (shelfedBook && shelfedBook.length > 0) ? shelfedBook[0].shelf : 'none'
+                            return book;
+                        })
+                    }
                     // set search result state to update the searchResult with search result data
                     setsearchResult((searchResultData && searchResultData.length > 0) ? searchResultData : [])
                 })
@@ -35,15 +42,11 @@ export default function BookSearch(props) {
         setSearchTerm(query)
     }
 
-    function goBack(e){
-        onGoBack();
-    }
-
     return (
         <div className="search-books">
             <div className="search-books-bar">
                 <Link to='/' title="close" className="close-search"  >
-                    <button className="close-search" onClick={(e) => { goBack(e) }} >Close</button>
+                    <button className="close-search" >Close</button>
                 </Link>
                 <div className="search-books-input-wrapper">
                     <input type="text" name="searchTem" value={searchTerm} onChange={searchTermOnChange} placeholder="Search by title or author" />
@@ -54,7 +57,7 @@ export default function BookSearch(props) {
                     {
                         searchResult.map((book) => (
                             <li key={book.id}>
-                                <BookCard book={book} />
+                                <BookCard book={book} onShelfChangeHndler={onShelfChangeHndler} />
                             </li>
                         ))
                     }
