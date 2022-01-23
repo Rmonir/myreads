@@ -19,7 +19,7 @@ class BooksApp extends React.Component {
   // changing shelf 
   onShelfChange(book, shelf) {
     let booksList = this.state.books
-    let bookIndex = booksList.findIndex(b => b.id == book.id)
+    let bookIndex = booksList.findIndex(b => b.id === book.id)
     if (bookIndex === -1) {
       booksList.push(book)
     } else {

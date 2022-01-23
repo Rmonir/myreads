@@ -30,7 +30,7 @@ function BookShelfChanger (props) {
     )
 }
 
-BookShelfChanger.proptypes = {
+BookShelfChanger.propTypes = {
     book: PropTypes.object.isRequired,
     onShelfChangeHndler: PropTypes.func.isRequired
 }

@@ -13,7 +13,7 @@ function BookSearch(props) {
     // this effect will raised after changing searchTerm value
     useEffect(() => {
         // assure that searchTerm more than 2 letters
-        if (searchTerm.length > 2) {
+        if (searchTerm !== '' && searchTerm.length > 2) {
             let searchKeyword = searchTerm;
             // check if searchTerm in the SearchKeyWords predefined array 
             let keyWards = SearchKeyWords.filter(key => key.toLowerCase().includes(searchKeyword.trim().toLowerCase()));
@@ -23,7 +23,7 @@ function BookSearch(props) {
                 BooksApi.search(searchKeyword.trim().toLowerCase()).then((searchResultData) => {
                     if (searchResultData && searchResultData.length > 0) {
                         searchResultData.map(book => {
-                            let shelfedBook = shelvedBooks.filter(b => b.id == book.id);
+                            let shelfedBook = shelvedBooks.filter(b => b.id === book.id);
                             book.shelf = (shelfedBook && shelfedBook.length > 0) ? shelfedBook[0].shelf : 'none'
                             return book;
                         })
