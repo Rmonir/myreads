@@ -5,6 +5,7 @@ import BookSearch from './components/bookSearch'
 import BookList from './components/bookList'
 import * as BooksApi from './booksAPI'
 import { Routes, Route } from "react-router-dom";
+import { BookShelvesLkp } from './data/bookShelveslkp'
 class BooksApp extends React.Component {
   state = {
     books: [],
@@ -51,9 +52,10 @@ class BooksApp extends React.Component {
   // draw book shelves containing related books
   drawBookShelves(books) {
     // get distinct shelves array 
-    let shelves = [...new Set(books.map(c => c.shelf))]
+    //let shelves = [...new Set(books.map(c => c.shelf).filter(s => s !== 'none'))]
+    let shelves = Object.keys(BookShelvesLkp).filter(s => s !== 'none')
     // loop for each shelf and put related books in an array for it
-    let bookShelves = shelves.filter(s => s !== 'none').map(shelf => {
+    let bookShelves = shelves.map(shelf => {
       return [shelf, books.filter(c => c.shelf === shelf)]
     })
     // update bookShelves state
